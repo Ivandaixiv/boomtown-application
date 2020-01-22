@@ -25,7 +25,12 @@ module.exports = gql`
   }
 
   type User {
-    _: Boolean
+    id: ID!
+    email: String!
+    fullname: String!
+    bio: String
+    items: [Item]
+    borrowed: [Item]
   }
 
   type Tag {

@@ -62,8 +62,8 @@ module.exports = postgres => {
 
       const findUserQuery = {
         text: `              
-          Select * from users
-          where users.id = $1
+          SELECT * FROM users
+          WHERE users.id = $1
         `,
         values: [id]
       };
@@ -106,8 +106,8 @@ module.exports = postgres => {
     async getItemsForUser(id) {
       const items = await postgres.query({
         text: `
-          Select * from items
-          Where ownerid = $1
+          SELECT * FROM items
+          WHERE ownerid = $1
       `,
         values: [id],
       });
@@ -116,8 +116,8 @@ module.exports = postgres => {
     async getBorrowedItemsForUser(id) {
       const items = await postgres.query({
         text: `
-          Select * from items
-          Where borrowerid = $1
+          SELECT * FROM items
+          WHERE borrowerid = $1
           `,
         values: [id],
       });
@@ -126,7 +126,7 @@ module.exports = postgres => {
     async getTags() {
       const tags = await postgres.query(
         `
-          Select * From tags
+          SELECT * FROM tags
         `
       );
       return tags.rows;
@@ -134,9 +134,9 @@ module.exports = postgres => {
     async getTagsForItem(id) {
       const tagsQuery = {
         text: `
-          Select * From tags 
-          Inner Join itemtags 
-          On tags.tagid = itemtags.tagid 
+          SELECT * FROM tags 
+          INNER JOIN itemtags 
+          ON tags.tagid = itemtags.tagid 
           WHERE itemtags.itemid = $1
         `,
         values: [id]

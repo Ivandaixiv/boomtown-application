@@ -34,7 +34,8 @@ module.exports = gql`
   }
 
   type Tag {
-    _: Boolean
+    id: ID!
+    title: String!
   }
 
   type AuthPayload {

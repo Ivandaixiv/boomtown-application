@@ -49,11 +49,13 @@ module.exports = gql`
   }
 
   input AssignedBorrower {
-    _: Boolean
+    id: ID!
   }
 
   input NewItemInput {
-    _: Boolean
+    title: String!
+    description: String
+    tags: [AssignedTag]!
   }
 
   type Query {

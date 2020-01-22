@@ -92,7 +92,12 @@ module.exports = postgres => {
         `,
         values: idToOmit ? [idToOmit] : [],
       });
-      return items.rows;
+      try {
+        if (!item) throw "Item could not be found"
+        return item;
+      } catch (err) {
+        throw err;
+      }
     },
     async getItemsForUser(id) {
       const items = await postgres.query({

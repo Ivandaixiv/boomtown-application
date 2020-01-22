@@ -62,9 +62,13 @@ module.exports = postgres => {
 
       const findUserQuery = {
         text: "", // @TODO: Basic queries
-        values: [id],
+        values: [id]
       };
-
+      try {
+        const user = await postgres.query(findUserQuery);
+      } catch (err) {
+        throw "User was not found";
+      }
       /**
        *  Refactor the following code using the error handling logic described above.
        *  When you're done here, ensure all of the resource methods in this file
@@ -120,13 +124,22 @@ module.exports = postgres => {
       return items.rows;
     },
     async getTags() {
-      const tags = await postgres.query(/* @TODO: Basic queries */);
+      const tags = await postgres.query(
+        `
+          Select * From tags
+        `
+      );
       return tags.rows;
     },
     async getTagsForItem(id) {
       const tagsQuery = {
-        text: ``, // @TODO: Advanced query Hint: use INNER JOIN
-        values: [id],
+        text: `
+          Select * From tags 
+          Inner Join itemtags 
+          On tags.tagid = itemtags.tagid 
+          WHERE itemtags.itemid = $1
+        `,
+        values: [id]
       };
 
       const tags = await postgres.query(tagsQuery);

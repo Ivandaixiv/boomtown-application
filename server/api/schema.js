@@ -44,7 +44,8 @@ module.exports = gql`
   }
 
   input AssignedTag {
-    _: Boolean
+    id: ID!
+    title: String!
   }
 
   input AssignedBorrower {

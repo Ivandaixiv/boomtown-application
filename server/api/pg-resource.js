@@ -86,19 +86,10 @@ module.exports = postgres => {
     },
     async getItems(idToOmit) {
       const items = await postgres.query({
-        /**
-         *  @TODO:
-         *
-         *  idToOmit = ownerId
-         *
-         *  Get all Items. If the idToOmit parameter has a value,
-         *  the query should only return Items were the ownerid !== idToOmit
-         *
-         *  Hint: You'll need to use a conditional AND/WHERE clause
-         *  to your query text using string interpolation
-         */
-
-        text: ``,
+        text: `
+          SELECT * FROM items
+          WHERE ownerid != $1
+        `,
         values: idToOmit ? [idToOmit] : [],
       });
       return items.rows;

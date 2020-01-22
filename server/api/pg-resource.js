@@ -61,11 +61,16 @@ module.exports = postgres => {
        */
 
       const findUserQuery = {
-        text: "", // @TODO: Basic queries
+        text: `              
+          Select * from users
+          where users.id = $1
+        `,
         values: [id]
       };
       try {
         const user = await postgres.query(findUserQuery);
+        if (!user) throw "User was not found";
+        return user.rows[0];
       } catch (err) {
         throw "User was not found";
       }
@@ -77,9 +82,6 @@ module.exports = postgres => {
        *  Ex: If the user is not found from the DB throw 'User is not found'
        *  If the password is incorrect throw 'User or Password incorrect'
        */
-
-      const user = await postgres.query(findUserQuery);
-      return user;
       // -------------------------------
     },
     async getItems(idToOmit) {

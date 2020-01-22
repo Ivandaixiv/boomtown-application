@@ -155,3 +155,5 @@ const mutationResolvers = app => ({
     return newItem;
   },
 });
+
+module.exports = mutationResolvers;

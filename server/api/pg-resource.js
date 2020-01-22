@@ -93,8 +93,8 @@ module.exports = postgres => {
         values: idToOmit ? [idToOmit] : [],
       });
       try {
-        if (!item) throw "Item could not be found"
-        return item;
+        if (!items) throw "Item could not be found"
+        return items.rows;
       } catch (err) {
         throw err;
       }
@@ -120,20 +120,24 @@ module.exports = postgres => {
       return items.rows;
     },
     async getTags() {
-      const tags = await postgres.query(
-        `
-          SELECT * FROM tags
-        `
-      );
-      return tags.rows;
+      try {
+        const tags = await postgres.query(
+          `
+            SELECT * FROM tags
+          `
+        );
+        return tags.rows;
+      } catch (err) {
+        throw err
+      }
     },
     async getTagsForItem(id) {
       const tagsQuery = {
         text: `
           SELECT * FROM tags 
           INNER JOIN itemtags 
-          ON tags.tagid = itemtags.tagid 
-          WHERE itemtags.itemid = $1
+          ON tags.id = itemtags.id 
+          WHERE itemtags.id = $1
         `,
         values: [id]
       };
@@ -171,14 +175,14 @@ module.exports = postgres => {
             // Begin postgres transaction
             client.query("BEGIN", async err => {
               const { title, description, tags } = item;
+              const insertItemQuery = {
+                text: `
+                  INSERT INTO items (title, description, ownerid) VALUES ($1, $2, $3)
+                `,
+                values: [title, description, ownerid]
+              }
 
-              // Generate new Item query
-              // @TODO
-              // -------------------------------
-
-              // Insert new Item
-              // @TODO
-              // -------------------------------
+              const insertItem = postgres.query(insertItemQuery);
 
               // Generate tag relationships query (use the'tagsQueryString' helper function provided)
               // @TODO

@@ -20,7 +20,8 @@ module.exports = gql`
     description: String!
     itemowner: User!
     tags: [Tag]
-    created: Date!
+    # Add date instead of string
+    created: String!
     borrower: User
   }
 
@@ -69,5 +70,8 @@ module.exports = gql`
     addItem (
       item: NewItemInput!
     ): Item
+    signup: Boolean
+    login: Boolean
+    logout: Boolean
   }
 `;

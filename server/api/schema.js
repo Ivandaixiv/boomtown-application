@@ -39,7 +39,8 @@ module.exports = gql`
   }
 
   type AuthPayload {
-    _: Boolean
+    token: String
+    user: User
   }
 
   input AssignedTag {

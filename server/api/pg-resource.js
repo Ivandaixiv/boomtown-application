@@ -72,7 +72,7 @@ module.exports = postgres => {
         if (!user) throw "User was not found";
         return user.rows[0];
       } catch (err) {
-        throw "User was not found";
+        throw err;
       }
       /**
        *  Refactor the following code using the error handling logic described above.

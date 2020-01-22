@@ -103,11 +103,10 @@ module.exports = postgres => {
     },
     async getItemsForUser(id) {
       const items = await postgres.query({
-        /**
-         *  @TODO:
-         *  Get all Items for user using their id
-         */
-        text: ``,
+        text: `
+          Select * from items
+          Where ownerid = $1
+      `,
         values: [id],
       });
       return items.rows;

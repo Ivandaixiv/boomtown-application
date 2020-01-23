@@ -177,12 +177,12 @@ module.exports = postgres => {
               const { title, description, tags } = item;
               const insertItemQuery = {
                 text: `
-                  INSERT INTO items (title, description, ownerid) VALUES ($1, $2, $3)
+                  INSERT INTO items (title, description, ownerid) VALUES ($1, $2, $3) RETURNING *
                 `,
                 values: [title, description, ownerid]
               }
 
-              const insertItem = postgres.query(insertItemQuery);
+              const insertItem = await postgres.query(insertItemQuery);
 
               // Generate tag relationships query (use the'tagsQueryString' helper function provided)
               // @TODO

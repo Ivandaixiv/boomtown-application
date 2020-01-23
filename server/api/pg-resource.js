@@ -1,5 +1,5 @@
 function tagsQueryString(tags, itemid, result) {
-  for (i = tags.length; i > 0; i--) {
+  for (let i = tags.length; i > 0; i--) {
     result += `($${i}, ${itemid}),`;
   }
   return result.slice(0, -1) + ";";
@@ -180,19 +180,23 @@ module.exports = postgres => {
                 text: `
                   INSERT INTO items (title, description, ownerid) VALUES ($1, $2, $3) RETURNING *
                 `,
-                values: [title, description, ownerid]
+                values: [title, description, user]
               }
 
-              const insertItem = await postgres.query(insertItemQuery);
+              const newItem = await postgres.query(insertItemQuery);
+              const itemId = newItem.rows[0].id
+
 
               const insertTagQuery = {
                 text: `
                   INSERT INTO itemtags (tagid, itemid) VALUES 
-                  (${tagsQueryString([...tags], itemid, results)})
+                  ${tagsQueryString([...tags], itemId, [])}
                 `,
                 values: tags.map(tag => tag.id)
               }
-              const insertTag = await postgres.query(insertTagQuery);
+
+              console.log(tagsQueryString([...tags], itemId, []))
+              // await postgres.query(insertTagQuery);
               // Commit the entire transaction!
               client.query("COMMIT", err => {
                 if (err) {
@@ -201,7 +205,7 @@ module.exports = postgres => {
                 // release the client back to the pool
                 done();
                 // Uncomment this resolve statement when you're ready!
-                // resolve(newItem.rows[0])
+                resolve(newItem.rows[0])
                 // -------------------------------
               });
             });

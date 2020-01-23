@@ -40,6 +40,21 @@ module.exports = postgres => {
       }
     },
     async getUserById(id) {
+
+      const findUserQuery = {
+        text: `              
+          SELECT * FROM users
+          WHERE users.id = $1
+        `,
+        values: [id]
+      };
+      try {
+        const user = await postgres.query(findUserQuery);
+        if (!user) throw "User was not found";
+        return user.rows[0];
+      } catch (err) {
+        throw err;
+      }
       /**
        *  @TODO: Handling Server Errors
        *
@@ -60,20 +75,6 @@ module.exports = postgres => {
        *  You'll need to complete the query first before attempting this exercise.
        */
 
-      const findUserQuery = {
-        text: `              
-          SELECT * FROM users
-          WHERE users.id = $1
-        `,
-        values: [id]
-      };
-      try {
-        const user = await postgres.query(findUserQuery);
-        if (!user) throw "User was not found";
-        return user.rows[0];
-      } catch (err) {
-        throw err;
-      }
       /**
        *  Refactor the following code using the error handling logic described above.
        *  When you're done here, ensure all of the resource methods in this file
@@ -136,8 +137,8 @@ module.exports = postgres => {
         text: `
           SELECT * FROM tags 
           INNER JOIN itemtags 
-          ON tags.id = itemtags.id 
-          WHERE itemtags.id = $1
+          ON tags.id = itemtags.tagid 
+          WHERE itemtags.itemid = $1
         `,
         values: [id]
       };

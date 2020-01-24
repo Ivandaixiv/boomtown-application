@@ -101,24 +101,32 @@ module.exports = postgres => {
       }
     },
     async getItemsForUser(id) {
-      const items = await postgres.query({
-        text: `
-          SELECT * FROM items
-          WHERE ownerid = $1
-      `,
-        values: [id],
-      });
-      return items.rows;
+      try {
+        const items = await postgres.query({
+          text: `
+              SELECT * FROM items
+              WHERE ownerid = $1
+          `,
+          values: [id],
+        });
+        return items.rows;
+      } catch (err) {
+        throw err;
+      }
     },
     async getBorrowedItemsForUser(id) {
-      const items = await postgres.query({
-        text: `
-          SELECT * FROM items
-          WHERE borrowerid = $1
-          `,
-        values: [id],
-      });
-      return items.rows;
+      try {
+        const items = await postgres.query({
+          text: `
+            SELECT * FROM items
+            WHERE borrowerid = $1
+            `,
+          values: [id],
+        });
+        return items.rows;
+      } catch (err) {
+        throw err;
+      }
     },
     async getTags() {
       try {
@@ -133,15 +141,19 @@ module.exports = postgres => {
       }
     },
     async getTagsForItem(id) {
-      const tagsQuery = {
-        text: `
-          SELECT * FROM tags 
-          INNER JOIN itemtags 
-          ON tags.id = itemtags.tagid 
-          WHERE itemtags.itemid = $1
-        `,
-        values: [id]
-      };
+      try {
+        const tagsQuery = {
+          text: `
+            SELECT * FROM tags 
+            INNER JOIN itemtags 
+            ON tags.id = itemtags.tagid 
+            WHERE itemtags.itemid = $1
+          `,
+          values: [id]
+        };
+      } catch (err) {
+        throw err
+      }
 
       const tags = await postgres.query(tagsQuery);
       return tags.rows;
@@ -204,7 +216,6 @@ module.exports = postgres => {
                 }
                 // release the client back to the pool
                 done();
-                // Uncomment this resolve statement when you're ready!
                 resolve(newItem.rows[0])
                 // -------------------------------
               });

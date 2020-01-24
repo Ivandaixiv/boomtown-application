@@ -207,8 +207,6 @@ module.exports = postgres => {
                 values: tags.map(tag => tag.id)
               }
 
-              console.log(tagsQueryString([...tags], itemId, []))
-              // await postgres.query(insertTagQuery);
               // Commit the entire transaction!
               client.query("COMMIT", err => {
                 if (err) {

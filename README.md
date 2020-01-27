@@ -1,4 +1,4 @@
-# Boomtown 🏙
+# Boomtown Application 
 
 ## Server
 
@@ -49,3 +49,6 @@ Increased understanding on data structures, servers, and javascript. Mainly usin
 ## Screenshot
 
 ![screenshot 1](./boomtownscreenshot.png)
+
+## Author
+ - Ivan - https://github.com/Ivandaixiv

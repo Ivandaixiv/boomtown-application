@@ -45,3 +45,7 @@ Javascript, Express, ApolloServer, PostgreSQL, GraphQL
 ## Personal Experience/ Learning Objective
 
 Increased understanding on data structures, servers, and javascript. Mainly using express, graphql and javascript. 
+
+## Screenshot
+
+![screenshot 1](./boomtownscreenshot.png)

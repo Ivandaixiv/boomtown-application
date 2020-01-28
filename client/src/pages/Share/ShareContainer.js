@@ -12,7 +12,7 @@ class ShareContainer extends Component {
     return (
       <Query query={ALL_TAGS_QUERY}>
         {({ loading, error, data }) => {
-          if (loading) return <FullScreenLoader />;
+          {/* if (loading) return <FullScreenLoader />; */}
           if (error) return `Error! ${error.message}`;
           return <Share tags={data.tags}/>
         }}

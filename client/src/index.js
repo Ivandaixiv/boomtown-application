@@ -3,23 +3,14 @@ import ReactDOM from "react-dom";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ApolloProvider } from 'react-apollo';
-// import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter as Router} from 'react-router-dom'
 
 import registerServiceWorker from "./registerServiceWorker";
 import theme from "./theme";
 import client from './apollo'
-// import AppRoutes from './routes'
+import AppRoutes from './routes'
 
 /**
- * @TODO: Add Routing
- *
- * Uncomment the following line when your routes are configured
- *
- * import AppRoutes from './routes'
- *
- * Below in your <App />, nest your <AppRoutes /> inside of <BrowserRouter />
- * component to enable routing in your client app.
- */
 
 /**
  * @TODO: Wrap your app with the Item Preview Provider
@@ -39,10 +30,6 @@ import client from './apollo'
  * user is currently logged in and who that user is.
  */
 
-// @TODO: Remove this import once you have your router working below
-import Home from "./pages/Home";
-// -------------------------------
-
 import "./index.css";
 
 const App = () => {
@@ -50,7 +37,9 @@ const App = () => {
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <ApolloProvider client={client}>
-        <Home />
+        <Router>
+          <AppRoutes />
+        </Router>
       </ApolloProvider>
     </MuiThemeProvider>
   );

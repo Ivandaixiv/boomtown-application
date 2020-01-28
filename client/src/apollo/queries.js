@@ -28,7 +28,7 @@ const ItemFields = gql`
 
 export const ALL_ITEMS_QUERY = gql`
   query items($filter: ID) {
-    items (id: $filter) {
+    items (filter: $filter) {
       ...ItemFields
     }
   }
@@ -37,15 +37,17 @@ export const ALL_ITEMS_QUERY = gql`
 
 export const ALL_USER_ITEMS_QUERY = gql`
   query user($id: ID!) {
-    id
-    bio
-    email
-    fullname
-    items {
-      ...ItemFields
-    }
-    borrowed {
-      ...ItemFields
+    user (id: $id) {
+      id
+      bio
+      email
+      fullname
+      items {
+        ...ItemFields
+      }
+      borrowed {
+        ...ItemFields
+      }
     }
   }
   ${ItemFields}

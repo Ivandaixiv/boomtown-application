@@ -151,12 +151,12 @@ module.exports = postgres => {
           `,
           values: [id]
         };
+        const tags = await postgres.query(tagsQuery);
+        return tags.rows;
       } catch (err) {
         throw err
       }
 
-      const tags = await postgres.query(tagsQuery);
-      return tags.rows;
     },
     async saveNewItem({ item, user }) {
       /**

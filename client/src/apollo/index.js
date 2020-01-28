@@ -7,7 +7,7 @@ import { onError } from 'apollo-link-error';
 const httpLink = createHttpLink({
   includeExtensions: true,
   uri: process.env.NODE_ENV !== 'production' && 'http://localhost:8080/graphql',
-  credentials: process.env.NODE_ENV === 'production' ? 'same-origin' : 'include'
+  credentials: process.env.NODE_ENV === 'production' ? 'same-origin' : ''
 });
 
 const client = new ApolloClient({

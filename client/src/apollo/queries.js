@@ -78,13 +78,10 @@ export const ADD_ITEM_MUTATION = gql`
 
 export const VIEWER_QUERY = gql`
   query {
-    viwer {
       id
       email
       fullname
       bio
-    }
-    # @TODO: Query the id, email, fullname, and bio fields for the viewer.
   }
 `;
 // export const LOGOUT_MUTATION = gql`

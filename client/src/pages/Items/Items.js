@@ -7,7 +7,7 @@ const Items = ({ items }) => {
   return (
     <div>
       <ItemsGrid items={items}/>
-      {console.log("Items: ", items)}
+      {/* {console.log("Items: ", items)} */}
     </div>
   );
 };

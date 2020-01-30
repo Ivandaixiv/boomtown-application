@@ -10,10 +10,11 @@ class ItemCard extends Component {
 
   render() {
 
-    console.log("ItemCard: " , this.props);
+    console.log("ItemCard: " , this.props.item);
 
     return (
-      <p>Hello World</p>
+      
+      <p>{this.props.item.title}</p>
     );
   }
 }

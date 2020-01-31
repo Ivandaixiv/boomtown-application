@@ -2,10 +2,10 @@ import { createStyles } from "@material-ui/styles";
 const styles = () =>
   createStyles({
     card: {
-      width: 450
+      width: 500
     },
     media: {
-      height: 300
+      height: 250
     },
     text: {
       height: "10rem"

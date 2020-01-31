@@ -17,7 +17,8 @@ class ItemsGrid extends Component {
           <Grid container justify="center" spacing={3}>
             {items
               ? items.map(item => {
-                  console.log("Current Item: ", item);
+                  /* console.log("Current Item: ", item); */
+
                   return (
                     <Grid key={item.id} item>
                       <ItemCard item={item} />

@@ -18,17 +18,17 @@ class ItemCard extends Component {
   }
 
   render() {
-    console.log("ItemCard: ", this.props);
+    // console.log("ItemCard: ", this.props);
     const { item, classes } = this.props;
     return (
       <Card className={classes.card}>
         <CardActionArea>
           <CardMedia
-            image="https://via.placeholder.com/1920x1080"
+            image="https://picsum.photos/1920/1080"
             title="placeholder"
             className={classes.media}
           />
-          <CardContent>
+          <CardContent className={classes.text}>
             <Typography>
               {item.itemowner.fullname + " " + item.created}
             </Typography>
@@ -37,7 +37,9 @@ class ItemCard extends Component {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button>Borrow</Button>
+          <Button size="large" className={classes.button}>
+            Borrow
+          </Button>
         </CardActions>
       </Card>
     );

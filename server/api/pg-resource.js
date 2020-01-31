@@ -10,7 +10,7 @@ module.exports = postgres => {
     async createUser({ fullname, email, password }) {
       const newUserInsert = {
         text: "", // @TODO: Authentication - Server
-        values: [fullname, email, password],
+        values: [fullname, email, password]
       };
       try {
         const user = await postgres.query(newUserInsert);
@@ -29,7 +29,7 @@ module.exports = postgres => {
     async getUserAndPasswordForVerification(email) {
       const findUserQuery = {
         text: "", // @TODO: Authentication - Server
-        values: [email],
+        values: [email]
       };
       try {
         const user = await postgres.query(findUserQuery);
@@ -40,7 +40,6 @@ module.exports = postgres => {
       }
     },
     async getUserById(id) {
-
       const findUserQuery = {
         text: `              
           SELECT * FROM users
@@ -91,10 +90,10 @@ module.exports = postgres => {
           SELECT * FROM items
           WHERE ownerid != $1
         `,
-        values: idToOmit ? [idToOmit] : [],
+        values: idToOmit ? [idToOmit] : []
       });
       try {
-        if (!items) throw "Item could not be found"
+        if (!items) throw "Item could not be found";
         return items.rows;
       } catch (err) {
         throw err;
@@ -107,7 +106,7 @@ module.exports = postgres => {
               SELECT * FROM items
               WHERE ownerid = $1
           `,
-          values: [id],
+          values: [id]
         });
         return items.rows;
       } catch (err) {
@@ -121,7 +120,7 @@ module.exports = postgres => {
             SELECT * FROM items
             WHERE borrowerid = $1
             `,
-          values: [id],
+          values: [id]
         });
         return items.rows;
       } catch (err) {
@@ -137,7 +136,7 @@ module.exports = postgres => {
         );
         return tags.rows;
       } catch (err) {
-        throw err
+        throw err;
       }
     },
     async getTagsForItem(id) {
@@ -154,9 +153,8 @@ module.exports = postgres => {
         const tags = await postgres.query(tagsQuery);
         return tags.rows;
       } catch (err) {
-        throw err
+        throw err;
       }
-
     },
     async saveNewItem({ item, user }) {
       /**
@@ -193,11 +191,10 @@ module.exports = postgres => {
                   INSERT INTO items (title, description, ownerid) VALUES ($1, $2, $3) RETURNING *
                 `,
                 values: [title, description, user]
-              }
+              };
 
               const newItem = await postgres.query(insertItemQuery);
-              const itemId = newItem.rows[0].id
-
+              const itemId = newItem.rows[0].id;
 
               const insertTagQuery = {
                 text: `
@@ -205,8 +202,8 @@ module.exports = postgres => {
                   ${tagsQueryString([...tags], itemId, [])}
                 `,
                 values: tags.map(tag => tag.id)
-              }
-
+              };
+              await postgres.query(insertTagQuery);
               // Commit the entire transaction!
               client.query("COMMIT", err => {
                 if (err) {
@@ -214,7 +211,7 @@ module.exports = postgres => {
                 }
                 // release the client back to the pool
                 done();
-                resolve(newItem.rows[0])
+                resolve(newItem.rows[0]);
                 // -------------------------------
               });
             });
@@ -234,6 +231,6 @@ module.exports = postgres => {
           }
         });
       });
-    },
+    }
   };
 };

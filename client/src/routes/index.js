@@ -5,11 +5,12 @@ import Items from "../pages/Items";
 import Home from "../pages/Home";
 import Profile from "../pages/Profile";
 import Share from "../pages/Share";
+import Navigation from "../components/Navigation";
 
 export default () => (
   <Fragment>
     {/* @TODO: Add your menu component here */}
-    {/* <Nav /> */}
+    <Navigation />
     <Switch>
       <Route exact path="/items" component={Items} />
       <Route exact path="/home" component={Home} />

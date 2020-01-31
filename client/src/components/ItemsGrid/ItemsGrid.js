@@ -13,14 +13,14 @@ class ItemsGrid extends Component {
     const { items } = this.props;
     return (
       <div>
-        <Grid item md={12}>
+        <Grid alignContent="center" item lg={12}>
           <Grid container justify="center" spacing={3}>
             {items
               ? items.map(item => {
                   /* console.log("Current Item: ", item); */
 
                   return (
-                    <Grid key={item.id} item>
+                    <Grid alignItems="center" key={item.id} item>
                       <ItemCard item={item} />
                     </Grid>
                   );

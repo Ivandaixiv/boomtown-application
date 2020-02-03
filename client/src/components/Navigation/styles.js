@@ -16,7 +16,7 @@ const styles = theme =>
       justifyContent: "space-between"
     },
     dropMenuItems: {
-      width: "18vw"
+      width: "200px"
     },
     textSpace: {
       marginLeft: 25

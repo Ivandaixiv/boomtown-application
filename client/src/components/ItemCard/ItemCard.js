@@ -9,7 +9,9 @@ import {
   Typography,
   withStyles
 } from "@material-ui/core";
+import Gravatar from "react-gravatar";
 import styles from "./styles";
+import moment from "moment";
 
 class ItemCard extends Component {
   constructor(props) {
@@ -18,8 +20,10 @@ class ItemCard extends Component {
   }
 
   render() {
-    // console.log("ItemCard: ", this.props);
+    // console.log("ItemCard: ", this.props.item);
+
     const { item, classes } = this.props;
+
     return (
       <Card className={classes.card}>
         <CardActionArea>
@@ -29,10 +33,30 @@ class ItemCard extends Component {
             className={classes.media}
           />
           <CardContent className={classes.text}>
-            <Typography>
-              {item.itemowner.fullname + " " + item.created}
-            </Typography>
-            <Typography>{item.title}</Typography>
+            <div className={classes.intro}>
+              <Typography>
+                <Gravatar
+                  email={item.itemowner.email}
+                  className={classes.profile}
+                />
+              </Typography>
+              <div>
+                <Typography> {item.itemowner.fullname}</Typography>
+                <Typography> {moment(item.created).fromNow()}</Typography>
+              </div>
+            </div>
+            <Typography className={classes.title}>{item.title}</Typography>
+            {item.tags.map(tag => {
+              return (
+                <Typography
+                  variant="subtitle2"
+                  color="textSecondary"
+                  key={tag.id}
+                >
+                  {tag.title}
+                </Typography>
+              );
+            })}
             <Typography>{item.description}</Typography>
           </CardContent>
         </CardActionArea>

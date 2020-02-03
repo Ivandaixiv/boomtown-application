@@ -39,6 +39,7 @@ function Navigation(props) {
             aria-label="add"
             variant="text"
             className={classes.add}
+            href="./share"
           >
             <AddCircleIcon className={classes.gap} />
             <Typography className={classes.gap}> Share Something </Typography>

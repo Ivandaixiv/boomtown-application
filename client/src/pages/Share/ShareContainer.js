@@ -20,7 +20,7 @@ class ShareContainer extends Component {
           {
             /* console.log("Share Data: ", data); */
           }
-          return <Share tags={data.tags} />;
+          if (data) return <Share tags={data.tags} />;
         }}
       </Query>
     );

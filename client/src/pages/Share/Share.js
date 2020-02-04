@@ -2,7 +2,7 @@ import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
 import ShareForm from "../../components/ShareItemForm";
-// import ItemCard from "../../components/ItemCard";
+import ShareItemPreview from "../../components/ShareItemPreview";
 /* 
   TODO: Create ShareItemFrom and ShareItemPreview in the components dir
   and call them from this file.
@@ -22,7 +22,7 @@ const Share = props => {
   const { classes } = props;
   return (
     <div className={classes.cardView}>
-      <p>This will be the item card preview</p>
+      <ShareItemPreview />
       <ShareForm tags={props.tags} />
     </div>
   );

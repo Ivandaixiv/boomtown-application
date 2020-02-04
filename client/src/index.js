@@ -11,9 +11,7 @@ import client from "./apollo";
 import Navigation from "./components/Navigation";
 import AppRoutes from "./routes";
 
-import ItemPreviewProvider, {
-  ItemPreviewContext
-} from "./context/ItemPreviewProvider";
+import ItemPreviewProvider from "./context/ItemPreviewProvider";
 /**
 
 /**

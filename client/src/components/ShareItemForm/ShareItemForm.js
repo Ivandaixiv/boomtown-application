@@ -7,7 +7,6 @@ import {
   Button,
   FormGroup,
   FormControlLabel,
-  Checkbox,
   FormControl,
   FormLabel
 } from "@material-ui/core";
@@ -108,31 +107,6 @@ class ShareForm extends Component {
                   })}
                 </FormGroup>
               </FormControl>
-
-              {/* <Field
-                name="listTags"
-                type="checkbox"
-                render={({ input, meta }) => (
-                  <FormControl>
-                    <FormLabel>Add Tags: </FormLabel>
-                    <FormGroup row>
-                      {tags &&
-                        tags.map(tag => (
-                          <FormControlLabel
-                            {...input}
-                            key={tag.id}
-                            control={
-                              <Checkbox key={tag.id} value={tag.title} />
-                            }
-                            label={tag.title}
-                            value="{tag.title}"
-                          />
-                        ))}
-                      {meta.error && meta.touched && <span>{meta.error}</span>}
-                    </FormGroup>
-                  </FormControl>
-                )}
-              /> */}
               <Field
                 name="submit"
                 render={(input, meta) => (

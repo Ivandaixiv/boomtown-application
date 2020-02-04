@@ -1,18 +1,19 @@
-import React, { Component } from "react";
-import { withStyles } from "@material-ui/core";
-import styles from "./styles";
-import { ItemPreviewContext } from "../ShareItemPreview";
+import React from "react";
+import { ItemPreviewContext } from "../../context/ItemPreviewProvider";
+import ItemCard from "../ItemCard";
 
-const ShareItemPreview = ({ item, classes }) => {
+const ShareItemPreview = ({ classes }) => {
   return (
-    <ItemPreviewContext>
+    <ItemPreviewContext.Consumer>
       {({ state }) => {
-        <div>
-          <p>Hello World</p>
-        </div>;
+        return (
+          <div>
+            <ItemCard item={state.item}></ItemCard>
+          </div>
+        );
       }}
-    </ItemPreviewContext>
+    </ItemPreviewContext.Consumer>
   );
 };
 
-export default withStyles(styles)(ShareItemPreview);
+export default ShareItemPreview;

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 export const ItemPreviewContext = React.createContext();
 
@@ -12,7 +12,7 @@ const intialState = {
 };
 
 const ItemPreviewProvider = props => {
-  const [item, setItem] = React.useState(intialState);
+  const [item, setItem] = React.useState({ item: intialState });
 
   const updatePreview = itemInput => {
     const newItem = { ...item, ...itemInput };

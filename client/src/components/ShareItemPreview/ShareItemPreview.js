@@ -5,10 +5,10 @@ import ItemCard from "../ItemCard";
 const ShareItemPreview = ({ classes }) => {
   return (
     <ItemPreviewContext.Consumer>
-      {({ state }) => {
+      {({ item }) => {
         return (
           <div>
-            <ItemCard item={state.item}></ItemCard>
+            <ItemCard item={item}></ItemCard>
           </div>
         );
       }}

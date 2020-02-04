@@ -7,6 +7,12 @@ const styles = theme =>
       flexDirection: "column",
       justifyContent: "space-around",
       height: "90%"
+    },
+    tagIcons: {
+      display: "flex"
+    },
+    button: {
+      width: "25%"
     }
   });
 

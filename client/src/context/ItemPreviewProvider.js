@@ -5,6 +5,7 @@ export const ItemPreviewContext = React.createContext();
 const intialState = {
   imageurl: "http://via.placeholder.com/1920x1080?text=Please select an image",
   itemowner: {},
+  email: "DummyEmail@gmail.com",
   created: new Date(),
   title: "Dummy Title",
   description: "Dummy Description",
@@ -12,7 +13,7 @@ const intialState = {
 };
 
 const ItemPreviewProvider = props => {
-  const [item, setItem] = React.useState({ item: intialState });
+  const [item, setItem] = React.useState(intialState);
 
   const updatePreview = itemInput => {
     const newItem = { ...item, ...itemInput };
@@ -26,7 +27,7 @@ const ItemPreviewProvider = props => {
   return (
     <ItemPreviewContext.Provider
       value={{
-        state: item,
+        item: item,
         updatePreview: updatePreview,
         resetPreview: resetPreview
       }}

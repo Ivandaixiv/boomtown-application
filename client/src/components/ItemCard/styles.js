@@ -24,10 +24,13 @@ const styles = () =>
     title: {
       fontSize: 28
     },
-    tags: {
+    tagsContainer: {
       width: "90%",
       display: "flex",
-      justifyContent: "space-between"
+      flexWrap: "wrap"
+    },
+    tags: {
+      paddingRight: "10px"
     }
   });
 export default styles;

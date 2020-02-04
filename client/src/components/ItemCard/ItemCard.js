@@ -14,7 +14,7 @@ import styles from "./styles";
 import moment from "moment";
 
 const ItemCard = props => {
-  console.log("ItemCard: ", props.item);
+  // console.log("ItemCard: ", props.item);
 
   const { item, classes } = props;
 
@@ -22,7 +22,9 @@ const ItemCard = props => {
     <Card className={classes.card}>
       <CardActionArea>
         <CardMedia
-          image="https://picsum.photos/1920/1080"
+          image={
+            item.imageurl ? item.imageurl : "https://picsum.photos/1920/1080"
+          }
           title="placeholder"
           className={classes.media}
         />
@@ -30,13 +32,16 @@ const ItemCard = props => {
           <div className={classes.intro}>
             <Typography>
               <Gravatar
-                email={item && item.itemowner && item.itemowner.email}
+                email={
+                  (item && item.email && item.itemowner.email) || item.email
+                }
                 className={classes.profile}
               />
             </Typography>
             <div>
               <Typography>
-                {item && item.itemowner && item.itemowner.fullname}
+                {(item && item.itemowner && item.itemowner.fullname) ||
+                  "Your Name"}
               </Typography>
               <Typography>{item && moment(item.created).fromNow()}</Typography>
             </div>
@@ -44,7 +49,7 @@ const ItemCard = props => {
           <Typography className={classes.title}>
             {item && item.title}
           </Typography>
-          <div className={classes.tags}>
+          <div className={classes.tagsContainer}>
             {item.tags &&
               item.tags.map(tag => {
                 return (
@@ -52,6 +57,7 @@ const ItemCard = props => {
                     variant="subtitle2"
                     color="textSecondary"
                     key={tag.id}
+                    className={classes.tags}
                   >
                     {tag.title}
                   </Typography>

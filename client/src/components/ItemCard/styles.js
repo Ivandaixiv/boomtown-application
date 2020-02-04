@@ -23,6 +23,11 @@ const styles = () =>
     },
     title: {
       fontSize: 28
+    },
+    tags: {
+      width: "90%",
+      display: "flex",
+      justifyContent: "space-between"
     }
   });
 export default styles;

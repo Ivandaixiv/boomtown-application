@@ -2,7 +2,7 @@ import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
 import ShareForm from "../../components/ShareItemForm";
-import ItemCard from "../../components/ItemCard";
+// import ItemCard from "../../components/ItemCard";
 /* 
   TODO: Create ShareItemFrom and ShareItemPreview in the components dir
   and call them from this file.

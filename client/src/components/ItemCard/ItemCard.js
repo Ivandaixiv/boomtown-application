@@ -46,17 +46,19 @@ class ItemCard extends Component {
               </div>
             </div>
             <Typography className={classes.title}>{item.title}</Typography>
-            {item.tags.map(tag => {
-              return (
-                <Typography
-                  variant="subtitle2"
-                  color="textSecondary"
-                  key={tag.id}
-                >
-                  {tag.title}
-                </Typography>
-              );
-            })}
+            <div className={classes.tags}>
+              {item.tags.map(tag => {
+                return (
+                  <Typography
+                    variant="subtitle2"
+                    color="textSecondary"
+                    key={tag.id}
+                  >
+                    {tag.title}
+                  </Typography>
+                );
+              })}
+            </div>
             <Typography>{item.description}</Typography>
           </CardContent>
         </CardActionArea>

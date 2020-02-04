@@ -7,7 +7,9 @@ import {
   Button,
   FormGroup,
   FormControlLabel,
-  Checkbox
+  Checkbox,
+  FormControl,
+  FormLabel
 } from "@material-ui/core";
 import styles from "./styles";
 
@@ -21,6 +23,9 @@ class ShareForm extends Component {
     if (!values.description) {
       errors.description = "Required";
     }
+    if (!values.tags) {
+      errors.tags = "Required";
+    }
     return errors;
   };
 
@@ -29,7 +34,7 @@ class ShareForm extends Component {
   };
 
   render() {
-    console.log("Props: ", this.props);
+    // console.log("Props: ", this.props);
     const { classes, tags } = this.props;
 
     return (
@@ -37,9 +42,8 @@ class ShareForm extends Component {
         onSubmit={this.onSubmit}
         validate={this.validate}
         render={({ handleSubmit, pristine, submitting }) => {
-          console.log("Pristine: ", submitting);
           return (
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className={classes.form}>
               <Typography variant="h3">Share. Borrow. Prosper.</Typography>
               <Field
                 name="image"
@@ -48,7 +52,6 @@ class ShareForm extends Component {
                     color="primary"
                     {...input}
                     variant="contained"
-                    component="label"
                     fullWidth={true}
                   >
                     Select An Image
@@ -62,16 +65,9 @@ class ShareForm extends Component {
                   <div className="inputBox">
                     <TextField
                       {...input}
-                      required
                       label="Name Your Item"
                       fullWidth={true}
                     />
-                    {/* <TextField
-                      {...input}
-                      variant="outlined"
-                      label="Name Your Item"
-                      className={classes.textFields}
-                    /> */}
                     {meta.error && meta.touched && <span>{meta.error}</span>}
                   </div>
                 )}
@@ -82,37 +78,61 @@ class ShareForm extends Component {
                   <div className="inputBox">
                     <TextField
                       {...input}
-                      required
                       label="Describe Your Item"
                       fullWidth={true}
                       multiline
                       rows="3"
                     />
-                    {/* <TextField
-                      variant="outlined"
-                      {...input}
-                      label="Password"
-                      className={classes.textFields}
-                    /> */}
-                    {/* <input
-                      placeholder="Type your password"
-                      type="password"
-                      name="password"
-                      {...input}
-                    /> */}
                     {meta.error && meta.touched && <span>{meta.error}</span>}
                   </div>
                 )}
               />
-              <FormGroup row>
-                {tags &&
-                  tags.map(tag => (
-                    <FormControlLabel
-                      control={<Checkbox value="checkedA" />}
-                      label={tag.title}
-                    />
-                  ))}
-              </FormGroup>
+              <FormControl>
+                <FormLabel>Add Tags: </FormLabel>
+                <FormGroup row>
+                  {tags.map(tag => {
+                    return (
+                      <FormControlLabel
+                        key={tag.id}
+                        control={
+                          <Field
+                            name="tags"
+                            type="checkbox"
+                            value={tag.title}
+                            component="input"
+                          />
+                        }
+                        label={tag.title}
+                      />
+                    );
+                  })}
+                </FormGroup>
+              </FormControl>
+
+              {/* <Field
+                name="listTags"
+                type="checkbox"
+                render={({ input, meta }) => (
+                  <FormControl>
+                    <FormLabel>Add Tags: </FormLabel>
+                    <FormGroup row>
+                      {tags &&
+                        tags.map(tag => (
+                          <FormControlLabel
+                            {...input}
+                            key={tag.id}
+                            control={
+                              <Checkbox key={tag.id} value={tag.title} />
+                            }
+                            label={tag.title}
+                            value="{tag.title}"
+                          />
+                        ))}
+                      {meta.error && meta.touched && <span>{meta.error}</span>}
+                    </FormGroup>
+                  </FormControl>
+                )}
+              /> */}
               <Field
                 name="submit"
                 render={(input, meta) => (

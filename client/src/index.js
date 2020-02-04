@@ -11,6 +11,9 @@ import client from "./apollo";
 import Navigation from "./components/Navigation";
 import AppRoutes from "./routes";
 
+import ItemPreviewProvider, {
+  ItemPreviewContext
+} from "./context/ItemPreviewProvider";
 /**
 
 /**
@@ -38,10 +41,12 @@ const App = () => {
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <ApolloProvider client={client}>
-        <Router>
-          <Navigation />
-          <AppRoutes />
-        </Router>
+        <ItemPreviewProvider>
+          <Router>
+            <Navigation />
+            <AppRoutes />
+          </Router>
+        </ItemPreviewProvider>
       </ApolloProvider>
     </MuiThemeProvider>
   );

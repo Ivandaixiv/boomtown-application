@@ -99,7 +99,7 @@ class AccountForm extends Component {
                   variant="contained"
                   size="large"
                   color="secondary"
-                  disabled={pristine}
+                  disabled={pristine || invalid}
                 >
                   {this.state.formToggle ? "Enter" : "Create Account"}
                 </Button>
@@ -108,7 +108,7 @@ class AccountForm extends Component {
                     className={classes.formToggle}
                     type="button"
                     onClick={() => {
-                      // @TODO: Reset the form on submit
+                      form.reset();
                       this.setState({
                         formToggle: !this.state.formToggle
                       });
@@ -122,7 +122,12 @@ class AccountForm extends Component {
               </Grid>
             </FormControl>
             <Typography className={classes.errorMessage}>
-              {/* @TODO: Display sign-up and login errors */}
+              {(this.state.error &&
+                this.state.formToggle &&
+                this.state.error.graphQLErrors.message) ||
+                (this.state.error &&
+                  !this.state.formToggle &&
+                  this.state.error.graphQLErrors.message)}
             </Typography>
           </form>
         )}

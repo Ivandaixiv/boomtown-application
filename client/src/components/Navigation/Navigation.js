@@ -6,7 +6,8 @@ import {
   Button,
   Typography,
   MenuItem,
-  Menu
+  Menu,
+  Link
 } from "@material-ui/core";
 import boomtownLogo from "../../images/boomtown.svg";
 import { withStyles } from "@material-ui/styles";
@@ -16,7 +17,7 @@ import styles from "./styles";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import FingerprintIcon from "@material-ui/icons/Fingerprint";
 
-function Navigation(props) {
+function Navigation(props, { location }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = event => {
@@ -27,6 +28,8 @@ function Navigation(props) {
     setAnchorEl(null);
   };
   const { classes } = props;
+
+  console.log("Navigation :", location);
   return (
     <AppBar position="sticky">
       <Toolbar className={classes.split}>
@@ -34,16 +37,18 @@ function Navigation(props) {
           <img src={boomtownLogo} alt="Boomtown" className={classes.logo} />
         </Button>
         <div className={classes.split}>
-          <Button
-            color="secondary"
-            aria-label="add"
-            variant="text"
-            className={classes.add}
-            href="./share"
-          >
-            <AddCircleIcon className={classes.gap} />
-            <Typography className={classes.gap}> Share Something </Typography>
-          </Button>
+          {window.location.pathname !== "/share" ? (
+            <Button
+              color="secondary"
+              aria-label="add"
+              variant="text"
+              className={classes.add}
+              href="./share"
+            >
+              <AddCircleIcon className={classes.gap} />
+              <Typography className={classes.gap}> Share Something </Typography>
+            </Button>
+          ) : null}
           <div>
             <IconButton
               aria-label="display more actions"
@@ -64,7 +69,9 @@ function Navigation(props) {
               <MenuItem onClick={handleClose} className={classes.dropMenuItems}>
                 <FingerprintIcon />
                 <Typography className={classes.textSpace}>
-                  Your Profile
+                  <Link color="secondary" href="./profile" underline="none">
+                    Your Profile
+                  </Link>
                 </Typography>
               </MenuItem>
               <MenuItem onClick={handleClose} className={classes.dropMenuItems}>

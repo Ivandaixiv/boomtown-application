@@ -8,7 +8,6 @@ import { BrowserRouter as Router } from "react-router-dom";
 import registerServiceWorker from "./registerServiceWorker";
 import theme from "./theme";
 import client from "./apollo";
-import Navigation from "./components/Navigation";
 import AppRoutes from "./routes";
 
 import ItemPreviewProvider from "./context/ItemPreviewProvider";
@@ -41,7 +40,6 @@ const App = () => {
       <ApolloProvider client={client}>
         <ItemPreviewProvider>
           <Router>
-            <Navigation />
             <AppRoutes />
           </Router>
         </ItemPreviewProvider>

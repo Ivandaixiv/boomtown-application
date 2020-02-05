@@ -21,18 +21,24 @@ class AccountForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      formToggle: true
+      formToggle: true,
+      error: null
     };
   }
 
   render() {
-    const { classes } = this.props;
-
+    const { classes, loginMutation, signupMutation } = this.props;
     return (
       <Form
         validate={validate.bind(this)}
         onSubmit={values => {
-          console.log(values);
+          const user = { variables: { user: values } };
+
+          this.state.formToggle
+            ? loginMutation(user).catch(error => {
+                this.setState({ error });
+              })
+            : signupMutation(user).catch(error => this.setState({ error }));
         }}
         render={({ handleSubmit, pristine, invalid, submitting, form }) => (
           <form onSubmit={handleSubmit} className={classes.accountForm}>
@@ -138,4 +144,21 @@ class AccountForm extends Component {
 
 // @TODO: Use compose to add the login and signup mutations to this components props.
 // @TODO: Refetch the VIEWER_QUERY to reload the app and access authenticated routes.
-export default withStyles(styles)(AccountForm);
+
+const refetchQueries = [{ query: VIEWER_QUERY }];
+
+export default compose(
+  graphql(SIGNUP_MUTATION, {
+    name: "signupMutation",
+    option: {
+      refetchQueries
+    }
+  }),
+  graphql(LOGIN_MUTATION, {
+    name: "loginMutation",
+    option: {
+      refetchQueries
+    }
+  }),
+  withStyles(styles)
+)(AccountForm);

@@ -6,22 +6,40 @@ import Home from "../pages/Home";
 import Profile from "../pages/Profile";
 import Share from "../pages/Share";
 import Navigation from "../components/Navigation";
+import { ViewerContext } from "../context/ViewerProvider";
+import PrivateRoute from "../components/PrivateRoute";
+import FullSreenLoader from "../components/FullScreenLoader";
 
 export default () => (
-  <Fragment>
-    {window.location.pathname !== "/home" ? <Navigation location /> : ""}
-    <Switch>
-      <Route exact path="/items" component={Items} />
-      <Route exact path="/home" component={Home} />
-      <Route exact path="/profile" component={Profile} />
-      <Route exact path="/profile/:userid" component={Profile} />
-      <Route exact path="/share" component={Share} />
-      <Redirect from="*" to="/profile" />
+  <ViewerContext.Consumer>
+    {({ viewer, loading }) => {
+      if (loading) return <div>loading...</div>;
 
-      {/**
-       * Later, we'll add logic to send users to one set of routes if they're logged in,
-       * or only view the /welcome page if they are not.
-       */}
-    </Switch>
-  </Fragment>
+      if (!viewer) {
+        return (
+          <Switch>
+            <Route exact path="/home" name="home" component={Home} />
+            <Redirect from="*" to="/home" />
+          </Switch>
+        );
+      }
+      return (
+        <Fragment>
+          <Navigation location />
+          <Switch>
+            <PrivateRoute exact path="/items" component={Items} />
+            <PrivateRoute exact path="/profile" component={Profile} />
+            <PrivateRoute exact path="/profile/:userid" component={Profile} />
+            <PrivateRoute exact path="/share" component={Share} />
+            <Redirect from="*" to="/profile" />
+
+            {/**
+             * Later, we'll add logic to send users to one set of routes if they're logged in,
+             * or only view the /welcome page if they are not.
+             */}
+          </Switch>
+        </Fragment>
+      );
+    }}
+  </ViewerContext.Consumer>
 );

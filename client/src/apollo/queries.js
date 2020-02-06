@@ -78,10 +78,12 @@ export const ADD_ITEM_MUTATION = gql`
 
 export const VIEWER_QUERY = gql`
   query {
-    id
-    email
-    fullname
-    bio
+    viewer {
+      id
+      email
+      fullname
+      bio
+    }
   }
 `;
 export const LOGOUT_MUTATION = gql`

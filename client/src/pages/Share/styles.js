@@ -5,7 +5,8 @@ const styles = theme =>
       display: "flex",
       flexDirection: "row",
       justifyContent: "space-evenly",
-      height: "100vh"
+      height: "100vh",
+      background: "white"
     }
   });
 

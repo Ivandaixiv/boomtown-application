@@ -1,5 +1,5 @@
 import { Route, Redirect } from "react-router-dom";
-import React, { Component } from "react";
+import React from "react";
 import { ViewerContext } from "../../context/ViewerProvider";
 
 const PrivateRoute = ({ component: Component, location, ...rest }) => (

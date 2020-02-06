@@ -29,7 +29,6 @@ function Navigation(props, { location }) {
   };
   const { classes } = props;
 
-  console.log("Navigation :", location);
   return (
     <AppBar position="sticky">
       <Toolbar className={classes.split}>

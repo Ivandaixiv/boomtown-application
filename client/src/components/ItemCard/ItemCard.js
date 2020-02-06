@@ -33,7 +33,8 @@ const ItemCard = props => {
             <Typography>
               <Gravatar
                 email={
-                  (item && item.email && item.itemowner.email) || item.email
+                  (item && item.itemowner.email && item.itemowner.email) ||
+                  item.email
                 }
                 className={classes.profile}
               />

@@ -13,8 +13,7 @@ import FullSreenLoader from "../components/FullScreenLoader";
 export default () => (
   <ViewerContext.Consumer>
     {({ viewer, loading }) => {
-      if (loading) return <div>loading...</div>;
-
+      if (loading) return <FullSreenLoader />;
       if (!viewer) {
         return (
           <Switch>

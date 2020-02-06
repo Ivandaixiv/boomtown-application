@@ -34,6 +34,17 @@ module.exports = gql`
     user: User
   }
 
+  input SignUpInput {
+    fullname: String!
+    email: String!
+    password: String!
+  }
+
+  input LoginInput {
+    email: String!
+    password: String!
+  }
+
   input AssignedTag {
     id: ID!
     title: String!
@@ -57,11 +68,9 @@ module.exports = gql`
   }
 
   type Mutation {
-    addItem (
-      item: NewItemInput!
-    ): Item
-    signup: Boolean
-    login: Boolean
+    addItem(item: NewItemInput!): Item
+    signup(user: SignUpInput!): AuthPayload!
+    login(user: LoginInput!): AuthPayload!
     logout: Boolean
   }
 `;

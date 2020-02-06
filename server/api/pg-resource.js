@@ -9,12 +9,13 @@ module.exports = postgres => {
   return {
     async createUser({ fullname, email, password }) {
       const newUserInsert = {
-        text: "", // @TODO: Authentication - Server
+        text: `INSERT INTO users( fullname,email, password) VALUES ($1, $2, $3) RETURNING *`,
         values: [fullname, email, password]
       };
       try {
         const user = await postgres.query(newUserInsert);
         return user.rows[0];
+        // rows is a property of the returned object which contains the result return form the DB
       } catch (e) {
         switch (true) {
           case /users_fullname_key/.test(e.message):

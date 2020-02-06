@@ -93,15 +93,13 @@ export const LOGOUT_MUTATION = gql`
 `;
 
 export const SIGNUP_MUTATION = gql`
-  mutation signup($user: SignupInput!) {
+  mutation signup($user: SignUpInput!) {
     signup(user: $user) {
       token
       user {
         id
       }
     }
-    # @TODO: Pass the user into the signup mutation as an argument
-    # and return the token and user id.
   }
 `;
 

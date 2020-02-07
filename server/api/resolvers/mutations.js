@@ -53,19 +53,9 @@ const mutationResolvers = app => ({
 
   async login(parent, { user: { email, password } }, { pgResource, req }) {
     try {
-      const user = await context.pgResource.getUserAndPasswordForVerification(
-        args.user.email
-      );
+      const user = await pgResource.getUserAndPasswordForVerification(email);
       if (!user) throw "User was not found.";
-      /**
-       *  @TODO: Authentication - Server
-       *
-       *  To verify the user has provided the correct password, we'll use the provided password
-       *  they submitted from the login form to decrypt the 'hashed' version stored in out database.
-       */
-      // Use bcrypt to compare the provided password to 'hashed' password stored in your database.
-      const valid = false;
-      // -------------------------------
+      const valid = await bcrypt.compare(password, user.password);
       if (!valid) throw "Invalid Password";
 
       const token = generateToken(user, app.get("JWT_SECRET"));
@@ -86,7 +76,7 @@ const mutationResolvers = app => ({
   },
 
   logout(parent, args, context) {
-    // context.req.res.clearCookie(app.get("JWT_COOKIE_NAME"));
+    context.req.res.clearCookie(app.get("JWT_COOKIE_NAME"));
     return true;
   },
   async addItem(parent, args, context, info) {
@@ -94,10 +84,10 @@ const mutationResolvers = app => ({
       const { pgResource } = context;
       const { item } = args;
 
-      // const user = await jwt.decode(context.token, app.get("JWT_SECRET"));
+      const user = await jwt.decode(context.token, app.get("JWT_SECRET"));
       const newItem = await pgResource.saveNewItem({
-        item: item,
-        user: 1
+        item,
+        user: user.id
       });
       return newItem;
     } catch (e) {

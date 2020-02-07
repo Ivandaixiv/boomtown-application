@@ -24,13 +24,13 @@ export default () => (
       }
       return (
         <Fragment>
-          <Navigation location />
+          <Navigation />
           <Switch>
             <PrivateRoute exact path="/items" component={Items} />
             <PrivateRoute exact path="/profile" component={Profile} />
             <PrivateRoute exact path="/profile/:userid" component={Profile} />
             <PrivateRoute exact path="/share" component={Share} />
-            <Redirect from="*" to="/profile" />
+            <Redirect from="*" to="/items" />
 
             {/**
              * Later, we'll add logic to send users to one set of routes if they're logged in,

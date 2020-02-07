@@ -1,13 +1,13 @@
-import { ApolloClient } from 'apollo-client';
-import { ApolloLink } from 'apollo-link';
+import { ApolloClient } from "apollo-client";
+import { ApolloLink } from "apollo-link";
 import { createHttpLink } from "apollo-link-http";
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { onError } from 'apollo-link-error';
+import { InMemoryCache } from "apollo-cache-inmemory";
+import { onError } from "apollo-link-error";
 
 const httpLink = createHttpLink({
   includeExtensions: true,
-  uri: process.env.NODE_ENV !== 'production' && 'http://localhost:8080/graphql',
-  credentials: process.env.NODE_ENV === 'production' ? 'same-origin' : ''
+  uri: process.env.NODE_ENV !== "production" && "http://localhost:8080/graphql",
+  credentials: process.env.NODE_ENV === "production" ? "same-origin" : "include"
 });
 
 const client = new ApolloClient({
@@ -22,8 +22,8 @@ const client = new ApolloClient({
         );
       }
       if (networkError) console.log(`[Network error]: ${networkError}`);
-    })
-    , httpLink
+    }),
+    httpLink
   ]),
   cache: new InMemoryCache() // Pull data from client-side cache, if available
 });

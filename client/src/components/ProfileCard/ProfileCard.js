@@ -21,13 +21,6 @@ const ProfileCard = props => {
   return (
     <Card className={classes.card}>
       <CardActionArea>
-        <CardMedia
-          image={
-            item.imageurl ? item.imageurl : "https://picsum.photos/1920/1080"
-          }
-          title="placeholder"
-          className={classes.media}
-        />
         <CardContent className={classes.text}>
           <div className={classes.intro}>
             <Typography>

@@ -31,7 +31,6 @@ function Navigation(props) {
     setAnchorEl(null);
   };
   const { classes } = props;
-  console.log("Navigation: ", props);
   return (
     <Mutation
       mutation={LOGOUT_MUTATION}

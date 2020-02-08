@@ -11,7 +11,6 @@ class ItemsGrid extends Component {
   }
 
   render() {
-    // console.log("ItemGrid Props: ", this.props.items);
     const { items, classes } = this.props;
     return (
       <div>

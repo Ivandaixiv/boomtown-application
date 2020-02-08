@@ -15,8 +15,6 @@ import moment from "moment";
 import { NavLink } from "react-router-dom";
 
 const ItemCard = props => {
-  // console.log("ItemCard: ", props.item);
-
   const { item, classes } = props;
 
   return (

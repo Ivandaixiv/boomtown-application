@@ -41,11 +41,6 @@ const ProfileCard = props => {
           <Typography>{item && item.description}</Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button size="large" className={classes.button}>
-          Borrow
-        </Button>
-      </CardActions>
     </Card>
   );
 };

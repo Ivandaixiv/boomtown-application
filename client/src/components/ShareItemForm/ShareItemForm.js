@@ -17,7 +17,6 @@ import { ItemPreviewContext } from "../../context/ItemPreviewProvider";
 
 class ShareForm extends Component {
   validate = values => {
-    // console.log("Values: ", values);
     const errors = {};
     if (!values.title) {
       errors.title = "Required";

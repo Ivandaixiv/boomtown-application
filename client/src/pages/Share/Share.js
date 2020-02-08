@@ -18,7 +18,6 @@ import ShareItemPreview from "../../components/ShareItemPreview";
 // import ShareItemPreview from '../../components/ShareItemPreview';
 
 const Share = props => {
-  // console.log("Share Props: ", props);
   const { classes } = props;
   return (
     <div className={classes.cardView}>

@@ -12,7 +12,6 @@ class ProfileContainer extends Component {
       this.props && (
         <ViewerContext.Consumer>
           {({ viewer }) => (
-            /* Add function to grab only from this viewer */
             <Query
               query={ALL_USER_ITEMS_QUERY}
               variables={{ id: (userid && userid) || viewer.id }}

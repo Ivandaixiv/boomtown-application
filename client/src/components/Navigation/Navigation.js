@@ -6,8 +6,7 @@ import {
   Button,
   Typography,
   MenuItem,
-  Menu,
-  Link
+  Menu
 } from "@material-ui/core";
 import boomtownLogo from "../../images/boomtown.svg";
 import { withStyles } from "@material-ui/styles";
@@ -17,9 +16,11 @@ import styles from "./styles";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import FingerprintIcon from "@material-ui/icons/Fingerprint";
 import { Mutation } from "react-apollo";
-import { LOGOUT_MUTATION } from "../../apollo/queries";
+import { NavLink, Link } from "react-router-dom";
+import { withRouter } from "react-router";
+import { LOGOUT_MUTATION, VIEWER_QUERY } from "../../apollo/queries";
 
-function Navigation(props, { location }) {
+function Navigation(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = event => {
@@ -30,31 +31,41 @@ function Navigation(props, { location }) {
     setAnchorEl(null);
   };
   const { classes } = props;
-
+  console.log("Navigation: ", props);
   return (
-    <Mutation mutation={LOGOUT_MUTATION}>
+    <Mutation
+      mutation={LOGOUT_MUTATION}
+      refetchQueries={[{ query: VIEWER_QUERY }]}
+    >
       {logout => (
         <AppBar position="sticky">
           <Toolbar className={classes.split}>
-            <Button href="./items">
-              <img src={boomtownLogo} alt="Boomtown" className={classes.logo} />
-            </Button>
+            <NavLink to="/items" className={classes.link}>
+              <Button>
+                <img
+                  src={boomtownLogo}
+                  alt="Boomtown"
+                  className={classes.logo}
+                />
+              </Button>
+            </NavLink>
             <div className={classes.split}>
-              {window.location.pathname !== "/share" ? (
-                <Button
-                  color="secondary"
-                  aria-label="add"
-                  variant="text"
-                  className={classes.add}
-                  href="./share"
-                >
-                  <AddCircleIcon className={classes.gap} />
-                  <Typography className={classes.gap}>
-                    {" "}
-                    Share Something{" "}
-                  </Typography>
-                </Button>
-              ) : null}
+              {props.location.pathname !== "/share" && (
+                <NavLink to="/share" className={classes.link}>
+                  <Button
+                    color="secondary"
+                    aria-label="add"
+                    variant="text"
+                    className={classes.add}
+                  >
+                    <AddCircleIcon className={classes.gap} />
+                    <Typography className={classes.gap}>
+                      {" "}
+                      Share Something{" "}
+                    </Typography>
+                  </Button>
+                </NavLink>
+              )}
               <div>
                 <IconButton
                   aria-label="display more actions"
@@ -72,7 +83,7 @@ function Navigation(props, { location }) {
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
                 >
-                  <Link color="secondary" href="./profile" underline="none">
+                  <Link to="/profile" className={classes.link}>
                     <MenuItem
                       onClick={handleClose}
                       className={classes.dropMenuItems}
@@ -83,7 +94,13 @@ function Navigation(props, { location }) {
                       </Typography>
                     </MenuItem>
                   </Link>
-                  <Link onClick={logout} color="secondary" underline="none">
+                  <NavLink
+                    to="/home"
+                    onClick={logout}
+                    color="secondary"
+                    underline="none"
+                    className={classes.link}
+                  >
                     <MenuItem
                       onClick={handleClose}
                       className={classes.dropMenuItems}
@@ -93,7 +110,7 @@ function Navigation(props, { location }) {
                         Sign Out
                       </Typography>
                     </MenuItem>
-                  </Link>
+                  </NavLink>
                 </Menu>
               </div>
             </div>
@@ -103,4 +120,4 @@ function Navigation(props, { location }) {
     </Mutation>
   );
 }
-export default withStyles(styles)(Navigation);
+export default withRouter(withStyles(styles)(Navigation));

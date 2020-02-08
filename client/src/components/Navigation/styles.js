@@ -20,6 +20,9 @@ const styles = theme =>
     },
     textSpace: {
       marginLeft: 25
+    },
+    link: {
+      color: "#212121"
     }
   });
 

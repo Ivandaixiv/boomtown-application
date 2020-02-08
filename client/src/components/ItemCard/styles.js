@@ -31,6 +31,9 @@ const styles = () =>
     },
     tags: {
       paddingRight: "10px"
+    },
+    link: {
+      color: "#212121"
     }
   });
 export default styles;

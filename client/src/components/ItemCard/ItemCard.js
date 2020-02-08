@@ -12,6 +12,7 @@ import {
 import Gravatar from "react-gravatar";
 import styles from "./styles";
 import moment from "moment";
+import { NavLink } from "react-router-dom";
 
 const ItemCard = props => {
   // console.log("ItemCard: ", props.item);
@@ -20,54 +21,63 @@ const ItemCard = props => {
 
   return (
     <Card className={classes.card}>
-      <CardActionArea>
-        <CardMedia
-          image={
-            item.imageurl ? item.imageurl : "https://picsum.photos/1920/1080"
-          }
-          title="placeholder"
-          className={classes.media}
-        />
-        <CardContent className={classes.text}>
-          <div className={classes.intro}>
-            <Typography>
-              <Gravatar
-                email={
-                  (item && item.itemowner.email && item.itemowner.email) ||
-                  item.email
-                }
-                className={classes.profile}
-              />
-            </Typography>
-            <div>
+      <NavLink
+        to={(item.itemowner && `/profile/` + item.itemowner.id) || "#"}
+        color="secondary"
+        underline="none"
+        className={classes.link}
+      >
+        <CardActionArea>
+          <CardMedia
+            image={
+              item.imageurl ? item.imageurl : "https://picsum.photos/1920/1080"
+            }
+            title="placeholder"
+            className={classes.media}
+          />
+          <CardContent className={classes.text}>
+            <div className={classes.intro}>
               <Typography>
-                {(item && item.itemowner && item.itemowner.fullname) ||
-                  "Your Name"}
+                <Gravatar
+                  email={
+                    (item && item.itemowner.email && item.itemowner.email) ||
+                    item.email
+                  }
+                  className={classes.profile}
+                />
               </Typography>
-              <Typography>{item && moment(item.created).fromNow()}</Typography>
+              <div>
+                <Typography>
+                  {(item && item.itemowner && item.itemowner.fullname) ||
+                    "Your Name"}
+                </Typography>
+                <Typography>
+                  {item && moment(item.created).fromNow()}
+                </Typography>
+              </div>
             </div>
-          </div>
-          <Typography className={classes.title}>
-            {item && item.title}
-          </Typography>
-          <div className={classes.tagsContainer}>
-            {item.tags &&
-              item.tags.map(tag => {
-                return (
-                  <Typography
-                    variant="subtitle2"
-                    color="textSecondary"
-                    key={tag.id}
-                    className={classes.tags}
-                  >
-                    {tag.title}
-                  </Typography>
-                );
-              })}
-          </div>
-          <Typography>{item && item.description}</Typography>
-        </CardContent>
-      </CardActionArea>
+            <Typography className={classes.title}>
+              {item && item.title}
+            </Typography>
+            <div className={classes.tagsContainer}>
+              {item.tags &&
+                item.tags.map(tag => {
+                  return (
+                    <Typography
+                      variant="subtitle2"
+                      color="textSecondary"
+                      key={tag.id}
+                      className={classes.tags}
+                    >
+                      {tag.title}
+                    </Typography>
+                  );
+                })}
+            </div>
+            <Typography>{item && item.description}</Typography>
+          </CardContent>
+        </CardActionArea>
+      </NavLink>
       <CardActions>
         <Button size="large" className={classes.button}>
           Borrow

@@ -14,6 +14,7 @@ export default () => (
   <ViewerContext.Consumer>
     {({ viewer, loading }) => {
       if (loading) return <FullSreenLoader />;
+
       if (!viewer) {
         return (
           <Switch>

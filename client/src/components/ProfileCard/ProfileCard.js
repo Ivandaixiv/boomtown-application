@@ -11,13 +11,12 @@ import {
 } from "@material-ui/core";
 import Gravatar from "react-gravatar";
 import styles from "./styles";
-import moment from "moment";
 
 const ProfileCard = props => {
   // console.log("ItemCard: ", props.item);
 
-  const { item, classes } = props;
-
+  const { item, classes, profile } = props;
+  console.log("Props", props);
   return (
     <Card className={classes.card}>
       <CardActionArea>
@@ -25,39 +24,20 @@ const ProfileCard = props => {
           <div className={classes.intro}>
             <Typography>
               <Gravatar
-                email={
-                  (item && item.itemowner.email && item.itemowner.email) ||
-                  item.email
-                }
+                email={(profile && profile.email) || "placeholder@gmail.com"}
                 className={classes.profile}
               />
             </Typography>
             <div>
               <Typography>
-                {(item && item.itemowner && item.itemowner.fullname) ||
+                {(profile && profile.fullname && profile.fullname) ||
                   "Your Name"}
               </Typography>
-              <Typography>{item && moment(item.created).fromNow()}</Typography>
             </div>
           </div>
           <Typography className={classes.title}>
             {item && item.title}
           </Typography>
-          <div className={classes.tagsContainer}>
-            {item.tags &&
-              item.tags.map(tag => {
-                return (
-                  <Typography
-                    variant="subtitle2"
-                    color="textSecondary"
-                    key={tag.id}
-                    className={classes.tags}
-                  >
-                    {tag.title}
-                  </Typography>
-                );
-              })}
-          </div>
           <Typography>{item && item.description}</Typography>
         </CardContent>
       </CardActionArea>

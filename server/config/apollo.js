@@ -12,7 +12,6 @@ module.exports = ({ app, pgResource }) => {
   const schema = makeExecutableSchema({ typeDefs, resolvers });
   const apolloServer = new ApolloServer({
     context: ({ req }) => {
-      // @TODO: Uncomment this later when we add auth (to be added to Apollo's context)
       const tokenName = app.get("JWT_COOKIE_NAME");
       const token = req ? req.cookies[tokenName] : undefined;
       let user = null;

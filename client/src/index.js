@@ -13,24 +13,6 @@ import AppRoutes from "./routes";
 import ItemPreviewProvider from "./context/ItemPreviewProvider";
 import ViewerProvider from "./context/ViewerProvider";
 
-/**
- * @TODO: Wrap your app with the Item Preview Provider
- *
- * import ItemPreviewProvider from './context/ItemPreviewProvider'
- *
- * Wrap this component around your app to access Item Preview Context API.
- */
-
-/**
- * @TODO: Wrap your app with the Viewer Context
- *
- * import ViewerProvider from './context/ViewerProvider'
- *
- * Below in your <App />, wrap the <ViewerProvider /> component around
- * the <BrowserRouter /> component so the router is aware of whether a
- * user is currently logged in and who that user is.
- */
-
 import "./index.css";
 
 const App = () => {

@@ -67,14 +67,8 @@ export const ADD_ITEM_MUTATION = gql`
     addItem(item: $item) {
       id
     }
-    # @TODO: Pass the item and image into the addItem mutation as arguments
-    # and return the new item id when the mutation is complete.
   }
 `;
-
-/**
- * Auth-related queries and mutations.
- */
 
 export const VIEWER_QUERY = gql`
   query {

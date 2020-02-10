@@ -18,8 +18,6 @@ class ItemsGrid extends Component {
           <Grid container justify="center">
             {items
               ? items.map(item => {
-                  /* console.log("Current Item: ", item); */
-
                   return (
                     <Grid key={item.id} item className={classes.cardSpacing}>
                       <ItemCard item={item} />

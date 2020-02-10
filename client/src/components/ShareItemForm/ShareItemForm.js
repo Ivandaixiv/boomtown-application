@@ -9,6 +9,7 @@ import {
   FormControl,
   FormLabel
 } from "@material-ui/core";
+import { Link } from "react-router-dom";
 import { Mutation } from "react-apollo";
 import { ADD_ITEM_MUTATION } from "../../apollo/queries";
 import HomeIcon from "@material-ui/icons/Home";
@@ -206,6 +207,7 @@ class ShareForm extends Component {
                         </label>
                       </FormGroup>
                     </FormControl>
+
                     <Field
                       name="submit"
                       render={(input, meta) => (

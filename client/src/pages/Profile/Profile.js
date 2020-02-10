@@ -1,22 +1,30 @@
 import React from "react";
-import { Grid } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
 import ProfileCard from "../../components/ProfileCard";
 import ItemGrid from "../../components/ItemsGrid";
 
 const Profile = props => {
-  const { items, profile } = props;
+  const { profile, classes } = props;
   return (
-    <Grid container justify="center">
-      <Grid container justify="center" spacing={2}>
-        <Grid item xs={10}>
-          <ProfileCard profile={profile} />
+    <div>
+      <Grid container justify="center">
+        <Grid container justify="center">
+          <Grid item xs={11}>
+            <ProfileCard profile={profile} />
+          </Grid>
         </Grid>
-
-        <ItemGrid items={profile.items} />
       </Grid>
-    </Grid>
+      <div>
+        {profile && profile.items.length > 0 && (
+          <Typography color="primary" variant="h4" className={classes.title}>
+            Shared Items
+          </Typography>
+        )}
+        <ItemGrid items={profile.items} />
+      </div>
+    </div>
   );
 };
 

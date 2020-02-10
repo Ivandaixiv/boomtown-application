@@ -14,13 +14,7 @@ class ItemsGrid extends Component {
     const { items, classes } = this.props;
     return (
       <div>
-        <Grid
-          className={classes.content}
-          container
-          alignContent="center"
-          item
-          lg={12}
-        >
+        <Grid className={classes.content} container item lg={12}>
           <Grid container justify="center">
             {items
               ? items.map(item => {
@@ -35,8 +29,6 @@ class ItemsGrid extends Component {
               : null}
           </Grid>
         </Grid>
-        {/* {this.props.items.length > 0 ? return : return } */}
-        {/* <ItemCard items={this.props.items}/> */}
       </div>
     );
   }

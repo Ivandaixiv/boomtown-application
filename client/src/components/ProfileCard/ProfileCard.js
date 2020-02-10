@@ -2,10 +2,7 @@ import React from "react";
 import {
   Card,
   CardActionArea,
-  CardActions,
   CardContent,
-  CardMedia,
-  Button,
   Typography,
   withStyles
 } from "@material-ui/core";
@@ -13,34 +10,26 @@ import Gravatar from "react-gravatar";
 import styles from "./styles";
 
 const ProfileCard = props => {
-  // console.log("ItemCard: ", props.item);
+  const { classes, profile } = props;
 
-  const { item, classes, profile } = props;
-  console.log("Props", props);
   return (
-    <Card className={classes.card}>
-      <CardActionArea>
-        <CardContent className={classes.text}>
-          <div className={classes.intro}>
-            <Typography>
-              <Gravatar
-                email={(profile && profile.email) || "placeholder@gmail.com"}
-                className={classes.profile}
-              />
-            </Typography>
-            <div>
-              <Typography>
-                {(profile && profile.fullname && profile.fullname) ||
-                  "Your Name"}
-              </Typography>
-            </div>
-          </div>
-          <Typography className={classes.title}>
-            {item && item.title}
-          </Typography>
-          <Typography>{item && item.description}</Typography>
-        </CardContent>
-      </CardActionArea>
+    <Card className={classes.profile}>
+      <CardContent className={classes.content}>
+        <Typography variant="h3" color="secondary">
+          <Gravatar
+            className={classes.icon}
+            email={(profile && profile.email) || "placeholder@gmail.com"}
+          />
+          {(profile && profile.fullname && profile.fullname) || "Your Name"}
+        </Typography>
+        <Typography>
+          {profile && profile.items.length} Items Shared{" "}
+          {profile && profile.borrowed.length} Items Borrowed
+        </Typography>
+        <Typography>
+          "{(profile && profile.bio && profile.bio) || "No bio provided."}"
+        </Typography>
+      </CardContent>
     </Card>
   );
 };

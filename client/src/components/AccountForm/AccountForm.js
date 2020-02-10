@@ -14,6 +14,7 @@ import {
 import { Mutation } from "react-apollo";
 import validate from "./helpers/validation";
 import { Form, Field } from "react-final-form";
+import PropTypes from "prop-types";
 
 import styles from "./styles";
 
@@ -157,4 +158,10 @@ class AccountForm extends Component {
     );
   }
 }
+
+AccountForm.propTypes = {
+  props: PropTypes.exact({
+    classes: PropTypes.object.isRequired
+  })
+};
 export default withStyles(styles)(AccountForm);

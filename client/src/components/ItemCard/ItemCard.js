@@ -13,10 +13,16 @@ import Gravatar from "react-gravatar";
 import styles from "./styles";
 import moment from "moment";
 import { NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const ItemCard = props => {
+  ItemCard.propTypes = {
+    props: PropTypes.exact({
+      item: PropTypes.object.isRequired,
+      classes: PropTypes.object.isRequired
+    })
+  };
   const { item, classes } = props;
-
   return (
     <Card className={classes.card}>
       <NavLink

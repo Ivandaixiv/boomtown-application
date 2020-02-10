@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  Card,
-  CardActionArea,
-  CardContent,
-  Typography,
-  withStyles
-} from "@material-ui/core";
+import { Card, CardContent, Typography, withStyles } from "@material-ui/core";
 import Gravatar from "react-gravatar";
 import styles from "./styles";
 

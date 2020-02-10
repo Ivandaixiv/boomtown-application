@@ -4,6 +4,7 @@ import FullScreenLoader from "../../components/FullScreenLoader";
 import { ViewerContext } from "../../context/ViewerProvider";
 import { Query } from "react-apollo";
 import { ALL_USER_ITEMS_QUERY } from "../../apollo/queries";
+import PropTypes from "prop-types";
 
 class ProfileContainer extends Component {
   render() {
@@ -28,4 +29,9 @@ class ProfileContainer extends Component {
     );
   }
 }
+ProfileContainer.propTypes = {
+  props: PropTypes.exact({
+    match: PropTypes.bool.isRequired
+  })
+};
 export default ProfileContainer;

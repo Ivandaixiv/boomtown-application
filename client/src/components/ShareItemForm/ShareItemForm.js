@@ -9,7 +9,7 @@ import {
   FormControl,
   FormLabel
 } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import { Mutation } from "react-apollo";
 import { ADD_ITEM_MUTATION } from "../../apollo/queries";
 import HomeIcon from "@material-ui/icons/Home";
@@ -49,9 +49,7 @@ class ShareForm extends Component {
     });
   };
   render() {
-    // console.log("Props: ", this.props);
     const { classes, tags } = this.props;
-
     return (
       <ItemPreviewContext.Consumer>
         {({ updatePreview, resetPreview }) => (
@@ -234,4 +232,10 @@ class ShareForm extends Component {
     );
   }
 }
+ShareForm.propTypes = {
+  props: PropTypes.exact({
+    tags: PropTypes.object.isRequired,
+    classes: PropTypes.object.isRequired
+  })
+};
 export default withStyles(styles)(ShareForm);

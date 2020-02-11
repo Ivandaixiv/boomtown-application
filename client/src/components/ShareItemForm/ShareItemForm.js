@@ -9,6 +9,7 @@ import {
   FormControl,
   FormLabel
 } from "@material-ui/core";
+import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Mutation } from "react-apollo";
 import { ADD_ITEM_MUTATION } from "../../apollo/queries";
@@ -49,7 +50,7 @@ class ShareForm extends Component {
     });
   };
   render() {
-    const { classes, tags } = this.props;
+    const { classes, tags, history } = this.props;
     return (
       <ItemPreviewContext.Consumer>
         {({ updatePreview, resetPreview }) => (
@@ -66,6 +67,7 @@ class ShareForm extends Component {
                         }
                       }
                     });
+                    history.push("/profile");
                   } catch (error) {
                     throw error;
                   }
@@ -238,4 +240,4 @@ ShareForm.propTypes = {
     classes: PropTypes.object.isRequired
   })
 };
-export default withStyles(styles)(ShareForm);
+export default withRouter(withStyles(styles)(ShareForm));

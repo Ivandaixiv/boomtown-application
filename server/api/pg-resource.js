@@ -1,8 +1,9 @@
 function tagsQueryString(tags, itemid, result) {
-  for (let i = tags.length; i > 0; i--) {
-    result += `($${i}, ${itemid}),`;
+  for (let i = 1; i <= tags.length; i++) {
+    result += `($${i}, ${itemid})`;
+    if (i !== tags.length) result += ",";
   }
-  return result.slice(0, -1) + ";";
+  return (result += ";");
 }
 
 module.exports = postgres => {

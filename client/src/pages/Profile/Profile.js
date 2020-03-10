@@ -2,7 +2,7 @@ import React from "react";
 import { Grid, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
-import ProfileCard from "../../components/ProfileCard";
+import UserCard from "../../components/UserCard";
 import ItemGrid from "../../components/ItemsGrid";
 
 const Profile = props => {
@@ -12,7 +12,7 @@ const Profile = props => {
       <Grid container justify="center">
         <Grid container justify="center">
           <Grid item xs={11}>
-            <ProfileCard profile={profile} />
+            <UserCard profile={profile} />
           </Grid>
         </Grid>
       </Grid>

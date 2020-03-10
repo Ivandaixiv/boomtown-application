@@ -6,6 +6,9 @@ export default function validate(values) {
   if (!values.password) {
     errors.password = "Required";
   }
+  if (!values.fullname) {
+    errors.fullname = "Required";
+  }
   if (values.fullname && !values.fullname) {
     errors.password = "Required";
   }

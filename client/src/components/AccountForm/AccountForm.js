@@ -60,15 +60,20 @@ class AccountForm extends Component {
                         <InputLabel htmlFor="fullname">Username</InputLabel>
                         <Field name="fullname">
                           {({ input, meta }) => (
-                            <Input
-                              id="fullname"
-                              type="text"
-                              inputProps={{
-                                ...input,
-                                autoComplete: "off"
-                              }}
-                              value={input.value}
-                            />
+                            <>
+                              <Input
+                                id="fullname"
+                                type="text"
+                                inputProps={{
+                                  ...input,
+                                  autoComplete: "off"
+                                }}
+                                value={input.value}
+                              />
+                              {meta.touched && meta.error && (
+                                <span>{meta.error}</span>
+                              )}
+                            </>
                           )}
                         </Field>
                       </FormControl>
@@ -77,15 +82,20 @@ class AccountForm extends Component {
                       <InputLabel htmlFor="email">Email</InputLabel>
                       <Field name="email">
                         {({ input, meta }) => (
-                          <Input
-                            id="email"
-                            type="text"
-                            inputProps={{
-                              ...input,
-                              autoComplete: "off"
-                            }}
-                            value={input.value}
-                          />
+                          <>
+                            <Input
+                              id="email"
+                              type="text"
+                              inputProps={{
+                                ...input,
+                                autoComplete: "off"
+                              }}
+                              value={input.value}
+                            />
+                            {meta.touched && meta.error && (
+                              <span>{meta.error}</span>
+                            )}
+                          </>
                         )}
                       </Field>
                     </FormControl>
@@ -93,15 +103,21 @@ class AccountForm extends Component {
                       <InputLabel htmlFor="password">Password</InputLabel>
                       <Field name="password" type="password">
                         {({ input, meta }) => (
-                          <Input
-                            id="password"
-                            type="password"
-                            inputProps={{
-                              ...input,
-                              autoComplete: "off"
-                            }}
-                            value={input.value}
-                          />
+                          <>
+                            {" "}
+                            <Input
+                              id="password"
+                              type="password"
+                              inputProps={{
+                                ...input,
+                                autoComplete: "off"
+                              }}
+                              value={input.value}
+                            />
+                            {meta.touched && meta.error && (
+                              <span>{meta.error}</span>
+                            )}
+                          </>
                         )}
                       </Field>
                     </FormControl>
@@ -118,7 +134,7 @@ class AccountForm extends Component {
                           variant="contained"
                           size="large"
                           color="secondary"
-                          disabled={pristine || invalid}
+                          disabled={pristine}
                         >
                           {this.state.formToggle ? "Enter" : "Create Account"}
                         </Button>
@@ -141,12 +157,13 @@ class AccountForm extends Component {
                       </Grid>
                     </FormControl>
                     <Typography className={classes.errorMessage}>
+                      {console.log(this.state)}
                       {(this.state.error &&
                         this.state.formToggle &&
-                        this.state.error.graphQLErrors.message) ||
+                        this.state.error.graphQLErrors[0].message) ||
                         (this.state.error &&
                           !this.state.formToggle &&
-                          this.state.error.graphQLErrors.message)}
+                          this.state.error.graphQLErrors[0].message)}
                     </Typography>
                   </form>
                 )}

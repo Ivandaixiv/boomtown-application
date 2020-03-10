@@ -8,10 +8,6 @@ import { withStyles } from "@material-ui/styles";
 import { ViewerContext } from "../../context/ViewerProvider";
 
 class ItemsContainer extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <ViewerContext.Consumer>

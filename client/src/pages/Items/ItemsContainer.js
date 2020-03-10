@@ -10,8 +10,6 @@ import { ViewerContext } from "../../context/ViewerProvider";
 class ItemsContainer extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {};
   }
 
   render() {
@@ -34,7 +32,5 @@ class ItemsContainer extends Component {
     );
   }
 }
-
-// export default withStyles(styles)(ItemsContainer);
 
 export default withStyles(styles)(ItemsContainer);

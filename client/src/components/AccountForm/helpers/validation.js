@@ -6,11 +6,8 @@ export default function validate(values) {
   if (!values.password) {
     errors.password = "Required";
   }
-  if (!values.fullname) {
+  if (!this.state.formToggle && !values.fullname) {
     errors.fullname = "Required";
-  }
-  if (values.fullname && !values.fullname) {
-    errors.password = "Required";
   }
   return errors;
 }

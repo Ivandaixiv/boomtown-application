@@ -42,10 +42,10 @@ class AccountForm extends Component {
                   const user = { variables: { user: values } };
 
                   this.state.formToggle
-                    ? login(user).catch(error => {
-                        this.setState({ error });
-                      })
+                    ? login(user).catch(error => this.setState({ error }))
                     : signup(user).catch(error => this.setState({ error }));
+
+                  console.log(this.state);
                 }}
                 render={({
                   handleSubmit,
@@ -157,7 +157,6 @@ class AccountForm extends Component {
                       </Grid>
                     </FormControl>
                     <Typography className={classes.errorMessage}>
-                      {console.log(this.state)}
                       {(this.state.error &&
                         this.state.formToggle &&
                         this.state.error.graphQLErrors[0].message) ||

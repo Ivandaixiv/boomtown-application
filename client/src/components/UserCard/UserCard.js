@@ -2,10 +2,10 @@ import React from "react";
 import { Card, CardContent, Typography, withStyles } from "@material-ui/core";
 import Gravatar from "react-gravatar";
 import styles from "./styles";
+import PropTypes from "prop-types";
 
 const UserCard = props => {
   const { classes, profile } = props;
-
   return (
     <Card className={classes.profile}>
       {profile && (
@@ -30,4 +30,8 @@ const UserCard = props => {
   );
 };
 
+UserCard.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string),
+  profile: PropTypes.object
+};
 export default withStyles(styles)(UserCard);

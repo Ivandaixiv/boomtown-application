@@ -7,7 +7,6 @@ import PropTypes from "prop-types";
 
 const Share = props => {
   const { classes, tags } = props;
-  console.log("Props", props);
   return (
     <div className={classes.cardView}>
       <ShareItemPreview />

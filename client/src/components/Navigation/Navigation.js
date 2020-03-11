@@ -22,7 +22,6 @@ import { LOGOUT_MUTATION, VIEWER_QUERY } from "../../apollo/queries";
 import PropTypes from "prop-types";
 
 function Navigation(props) {
-  console.log(props);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = event => {

@@ -3,7 +3,6 @@ import ItemsGrid from "../../components/ItemsGrid";
 import PropTypes from "prop-types";
 
 const Items = ({ items }) => {
-  console.log(items);
   return (
     <div>
       <ItemsGrid items={items} />

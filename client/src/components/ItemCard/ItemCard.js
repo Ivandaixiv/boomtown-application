@@ -16,12 +16,6 @@ import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 
 const ItemCard = props => {
-  ItemCard.propTypes = {
-    props: PropTypes.exact({
-      item: PropTypes.object.isRequired,
-      classes: PropTypes.object.isRequired
-    })
-  };
   const { item, classes } = props;
   return (
     <Card className={classes.card}>
@@ -91,4 +85,17 @@ const ItemCard = props => {
   );
 };
 
+ItemCard.propTypes = {
+  item: PropTypes.shape({
+    id: PropTypes.string,
+    title: PropTypes.string,
+    imageurl: PropTypes.string,
+    description: PropTypes.string,
+    created: PropTypes.string,
+    tags: PropTypes.arrayOf(PropTypes.object),
+    itemowner: PropTypes.object,
+    borrower: PropTypes.object
+  }),
+  classes: PropTypes.object
+};
 export default withStyles(styles)(ItemCard);

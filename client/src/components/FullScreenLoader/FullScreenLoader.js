@@ -6,7 +6,7 @@ import {
   Grid
 } from "@material-ui/core";
 import styles from "./styles";
-
+import PropTypes from "prop-types";
 const FullScreenLoader = props => {
   const { classes } = props;
   return (
@@ -18,5 +18,7 @@ const FullScreenLoader = props => {
     </Grid>
   );
 };
-
+FullScreenLoader.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string)
+};
 export default withStyles(styles)(FullScreenLoader);

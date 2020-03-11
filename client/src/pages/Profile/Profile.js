@@ -4,9 +4,11 @@ import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles";
 import UserCard from "../../components/UserCard";
 import ItemGrid from "../../components/ItemsGrid";
+import PropTypes from "prop-types";
 
 const Profile = props => {
   const { profile, classes } = props;
+  console.log("Profile", props);
   return (
     <div>
       <Grid container justify="center">
@@ -26,6 +28,17 @@ const Profile = props => {
       </div>
     </div>
   );
+};
+Profile.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string),
+  profile: PropTypes.shape({
+    id: PropTypes.string,
+    bio: PropTypes.string,
+    email: PropTypes.string,
+    fullName: PropTypes.string,
+    items: PropTypes.arrayOf(PropTypes.object),
+    borrowed: PropTypes.array
+  })
 };
 
 export default withStyles(styles)(Profile);

@@ -19,8 +19,10 @@ import { Mutation } from "react-apollo";
 import { NavLink, Link } from "react-router-dom";
 import { withRouter } from "react-router";
 import { LOGOUT_MUTATION, VIEWER_QUERY } from "../../apollo/queries";
+import PropTypes from "prop-types";
 
 function Navigation(props) {
+  console.log(props);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = event => {
@@ -119,4 +121,11 @@ function Navigation(props) {
     </Mutation>
   );
 }
+
+Navigation.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string),
+  history: PropTypes.object,
+  location: PropTypes.object,
+  match: PropTypes.object
+};
 export default withRouter(withStyles(styles)(Navigation));

@@ -6,7 +6,6 @@ import styles from "./styles";
 import PropTypes from "prop-types";
 
 const ItemsGrid = ({ items, classes }) => {
-  console.log(classes, items);
   return (
     <div>
       <Grid className={classes.content} container item lg={12}>
